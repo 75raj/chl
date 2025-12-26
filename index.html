@@ -1,231 +1,315 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            padding: 40px;
-            line-height: 1.8;
-            margin: 0;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            border: 3px solid #00ff00;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 30px #00ff00;
-            animation: borderGlow 4s infinite alternate;
-        }
-        @keyframes borderGlow {
-            0%   { box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; border-color: #00ff00; }
-            33%  { box-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff; border-color: #00ffff; }
-            66%  { box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff; border-color: #ff00ff; }
-            100% { box-shadow: 0 0 20px #ffff00, 0 0 50px #ffff00; border-color: #ffff00; }
-        }
-        .audio-section {
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 40px;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-            text-align: center;
-        }
-        .listen-btn {
-            padding: 18px 40px;
-            font-size: 1.5em;
-            font-weight: bold;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            color: black;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 30px #00ffff;
-            transition: all 0.3s;
-        }
-        .listen-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 50px #ff00ff;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: #111;
-            padding: 30px;
-            border-radius: 20px;
-            border: 3px solid #00ffff;
-            box-shadow: 0 0 40px #00ffff;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-        }
-        .choice-btn {
-            display: block;
-            width: 80%;
-            margin: 20px auto;
-            padding: 15px;
-            font-size: 1.3em;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 0 20px #ff00ff;
-        }
-        .choice-btn:hover {
-            transform: scale(1.05);
-        }
-        .player-box {
-            margin-top: 20px;
-            display: none;
-        }
-        .player-box audio {
-            width: 100%;
-            height: 60px;
-        }
-        .player-box audio::-webkit-media-controls-panel {
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            border-radius: 10px;
-        }
-        .close-btn {
-            margin-top: 20px;
-            padding: 10px 30px;
-            background: #f44336;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .line {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1.2s forwards;
-            margin: 14px 0;
-        }
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .line:nth-child(n) { animation-delay: 0.15s; }
-        .highlight {
-            font-weight: bold;
-            text-shadow: 0 0 12px currentColor;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-        .ending {
-            font-size: 1.6em;
-            margin-top: 40px;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUCKY</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(45deg, #98cfff, #f8c6ff, #bfff2b);
+      background-size: 600% 400%;
+      color: #000;
+      padding: 10px;
+      margin: 0;
+      animation: flow 5s ease-in-out infinite;
+      animation-delay: 0.5s;
+    }
+    @keyframes flow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      animation: slideUpContainer 1.2s ease-in-out;
+    }
+    @keyframes slideUpContainer {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      animation: bounceIn 1s ease-in-out;
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .caption {
+      text-align: center;
+      font-size: 24px;
+      margin-top: -20px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #ff0000;
+      animation: colorChange 3s infinite ease-in-out;
+    }
+    @keyframes colorChange {
+      0% { color: rgb(26, 255, 0); text-shadow: 0 0 15px red; }
+      25% { color: rgb(30, 0, 255); text-shadow: 0 0 15px yellow; }
+      50% { color: rgb(255, 0, 43); text-shadow: 0 0 15px pink; }
+      75% { color: rgb(0, 0, 0); text-shadow: 0 0 15px skyblue; }
+      100% { color: rgb(132, 255, 0); text-shadow: 0 0 15px red; }
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      padding: 20px 0;
+      justify-items: center;
+    }
+    .box {
+      background: linear-gradient(45deg, #ff6b6b, #ffe066, #40c4ff, #7b1fa2);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      border: 4px solid rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      width: 100%;
+      max-width: 200px; /* Ensure uniform size */
+      display: inline-block; /* Fit content while maintaining uniformity */
+    }
+    @keyframes hueRotate {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        -45deg,
+        rgba(112, 201, 239, 0.15),
+        rgba(11, 19, 243, 0.181),
+        rgb(0, 0, 0)
+      );
+      animation: waveLine 6s ease-in-out infinite;
+      transform: rotate(45deg);
+      z-index: 0;
+      filter: drop-shadow(0 0 6px rgb(225, 255, 0));
+    }
+    @keyframes waveLine {
+      0% { transform: rotate(45deg) translateX(120%) scale(0.85); opacity: 0.35; }
+      25% { transform: rotate(45deg) translateX(60%) scale(1); opacity: 0.65; }
+      50% { transform: rotate(45deg) translateX(-60%) scale(1.25); opacity: 1; }
+      75% { transform: rotate(25deg) translateX(30%) scale(1); opacity: 0.7; }
+      100% { transform: rotate(45deg) translateX(120%) scale(0.85); opacity: 0.35; }
+    }
+    .box h4 {
+      position: relative;
+      z-index: 1;
+      color: #000000;
+      font-weight: bold;
+      margin: 0;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .box:nth-child(1) {
+      background: linear-gradient(45deg, #0f0f0f, #40f752, #ff5e57, #1dd1a1);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 0s, 0s;
+    }
+    .box:nth-child(2) {
+      background: linear-gradient(45deg, #222f3e, #ff9ff3, #48dbfb, #ff6b6b);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 0.2s, 0s;
+    }
+    .box:nth-child(3) {
+      background: linear-gradient(45deg, #0a3d62, #54a0ff, #f368e0, #feca57);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 0.4s, 0s;
+    }
+    .box:nth-child(4) {
+      background: linear-gradient(45deg, #1e272e, #ff9f1a, #32ff7e, #18dcff);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 0.6s, 0s;
+    }
+    .box:nth-child(5) {
+      background: linear-gradient(45deg, #2f3640, #e84118, #0097e6, #9c88ff);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 0.8s, 0s;
+    }
+    .box:nth-child(6) {
+      background: linear-gradient(45deg, #130f40, #feca57, #ff0000, #00a8ff);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 1s, 0s;
+    }
+    .box:nth-child(7) {
+      background: linear-gradient(45deg, #0051ff, #ff6b81, #7bed9f, #70a1ff);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 1.2s, 0s;
+    }
+    .box:nth-child(8) {
+      background: linear-gradient(45deg, #ff4000, #00ff26, #1100ff, #d000ff);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 1.4s, 0s;
+    }
+    .box:nth-child(9) {
+      background: linear-gradient(45deg, #1e90ff, #ff6347, #00ced1, #ff4500);
+      background-size: 400% 400%;
+      animation: hueRotate 8s linear infinite, floatUpDown 3s ease-in-out infinite;
+      animation-delay: 1.6s, 0s;
+    }
+    .box:hover {
+      transform: scale(1.1); /* 10% zoom on hover */
+      box-shadow:
+        0 0 20px red,
+        0 0 40px yellow,
+        0 0 60px pink,
+        0 0 80px skyblue;
+      filter: brightness(1.3);
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+    .box h4 {
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    @media (min-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .box {
+        padding: 40px;
+      }
+      .box h4 {
+        font-size: 24px;
+      }
+    }
+    @media (max-width: 767px) {
+      .container {
+        padding: 20px;
+      }
+      .grid {
+        grid-template-columns: repeat(2, 1fr); /* Exactly 2 boxes per row */
+        gap: 45px; /* Minimum 2px gap between boxes on mobile */
+      }
+      .box {
+        padding: 20px; /* Reduced padding to make boxes smaller */
+        max-width: 150px; /* Reduced max-width for smaller boxes */
+      }
+      .box h4 {
+        font-size: 20px; /* Smaller font size for mobile */
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="audio-section">
-            <button class="listen-btn" onclick="openModal()">🔊 Listen Audio</button>
-        </div>
-
-        <div class="line">dear unknown, hame lagta hai aap personal wo padh ke <span class="highlight" style="color: #FF00FF;">manipulate</span> ho gaye.</div>
-        <div class="line">usme bas ye likha tha ki aap mere liye ek <span class="highlight" style="color: #FF1744;">unknown lucky girl</span> ho, bas.</div>
-        <div class="line">jab-jab aap se baat karta hu, next moment mere sath kuch <span class="highlight" style="color: #00E676;">best</span> hi hota hai.</div>
-        <div class="line">First time jab aap se baat ki — I <span class="highlight" style="color: #00B0FF;">forget Swati</span>.</div>
-        <div class="line">Third time jab aap se baat ki — I started <span class="highlight" style="color: #FFD600;">earning money</span>.</div>
-        <div class="line">Fourth time aap se baat ki — aur aaj shaam ko baat ki to (<span class="highlight" style="color: #FF4081;">3k</span> ka mil gaya, proof ke liye — I will add chat screenshot).</div>
-        <div class="line">dekho, aaj phir se <span class="highlight" style="color: #FF9100;">clear</span> kar dete hain —</div>
-        <div class="line">dear, I am a fully <span class="highlight" style="color: #18FFFF;">fun guy</span> and an <span class="highlight" style="color: #FF5722;">overthinker</span>.</div>
-        <div class="line">mere total life me bas <span class="highlight" style="color: #7C4DFF;">7 dost</span> bane hain,</div>
-        <div class="line">jisme ab sirf <span class="highlight" style="color: #E91E63;">2 se connect</span> hai,</div>
-        <div class="line">aur 1–2 month baad wo bhi nahi rahenge.</div>
-        <div class="line">and yes, agar suppose aap bahar ho</div>
-        <div class="line">and if I <span class="highlight" style="color: #76FF03;">laugh</span> ya muskura raha hu</div>
-        <div class="line">to wo aapko ya kisi bhi girl ko dekh ke nahi hota.</div>
-        <div class="line">maine aapko pehle hi mention kiya hai —</div>
-        <div class="line">I’m an <span class="highlight" style="color: #FF5722;">overthinker</span>,</div>
-        <div class="line">aur meri life me har din kuch na kuch <span class="highlight" style="color: #00E676;">best</span> moments hote rehte hain.</div>
-        <div class="line">so mai all time khud ki duniya me hi <span class="highlight" style="color: #FFD600;">busy</span> rehta hu.</div>
-        <div class="line">once again —</div>
-        <div class="line">mai har person ko <span class="highlight" style="color: #FF4081;">respect</span> karta hu, especially <span class="highlight" style="color: #9C27B0;">girls</span>.</div>
-        <div class="line">mai na aapko <span class="highlight" style="color: #00E676;">follow</span> karta hu, na kisi aur girl ko.</div>
-        <div class="line">phir se keh raha hu — mai kisi girl ko <span class="highlight" style="color: #00E676;">follow</span> nahi karta,</div>
-        <div class="line">na hi <span class="highlight" style="color: #F44336;">kabhi karunga</span>.</div>
-        <div class="line">aur aap se face-to-face baat bhi nahi kar sakta, pata nahi kyu —</div>
-        <div class="line">jaise hi aap se kuch question puchne ka sochta hu,</div>
-        <div class="line">meri <span class="highlight" style="color: #FF5252;">heartbeat</span> high ho jaati hai.</div>
-        <div class="line">to agar kahi pe kuch word extra lage to <span class="highlight" style="color: #4CAF50;">sorry</span></div>
-        <div class="line">right now I’m <span class="highlight" style="color: #FFD600;">busy</span> — kaam bhi hai aur <span class="highlight" style="color: #AB47BC;">exam</span> bhi hai.</div>
-        <div class="line">ye meri life ka <span class="highlight" style="color: #536DFE;">first idea</span> hai jo mai kisi unknown girl ko bata raha hu.</div>
-        <div class="line">to mai <span class="highlight" style="color: #00C853;">countdown</span> add kar dunga kab khatam hoga,</div>
-        <div class="line">and again, <span class="highlight" style="color: #4CAF50;">sorry</span> for wasting your time.</div>
-        <div class="line">agar aapko lagta hai ki mai aapko <span class="highlight" style="color: #FF1744;">disturb</span> kar raha hu to <span class="highlight" style="color: #4CAF50;">sorry</span>,</div>
-        <div class="line"><span class="highlight" style="color: #FF4081;">2026</span> me I will never <span class="highlight" style="color: #FF1744;">disturb</span> you — it’s my <span class="highlight" style="color: #00E5FF;">promise</span>.</div>
-        <div class="line ending">
-            <span class="highlight" style="color: #FFFF00;">Thank you</span> so much. 
-            <span class="highlight" style="color: #FF1744;">Bye</span>.
-        </div>
+  <div class="container">
+   <h2>Dear... <br>
+  <span class="board">ULGFM</span> <br/>
+</h2>
+<style>
+  .board {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #fff; /* white board */
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2),
+                0 8px 16px rgba(0,0,0,0.2);
+    transform: perspective(600px) rotateX(5deg);
+    transition: all 0.3s ease-in-out;
+    /* rainbow gradient text with animation */
+    background-image: linear-gradient(90deg,
+      #ff0000,
+      #ff54aa,
+      #ffff00,
+      #002aff,
+      #2bff00,
+      #4b0082,
+      #8b00ff
+    );
+    background-size: 400% 400%;
+    animation: rainbow 5s linear infinite;
+   
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+  }
+  .board:hover {
+    transform: perspective(600px) rotateX(0deg) translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25),
+                0 12px 24px rgba(0,0,0,0.25);
+  }
+  @keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+    <p class="caption"></p>
+    <div class="grid">
+     
+      <div class="box" onclick="clickEffect(this,'#60a5fa', 'https://75rishi.github.io/Empty1/')">
+        <h4>intro</h4>
+      </div>
+      <div class="box" onclick="clickEffect(this,'#60a5fa', 'https://75rishi.github.io/Empty2/')">
+        <h4>personal thx</h4>
+      </div>
+      <div class="box" onclick="clickEffect(this,'#34d399', 'https://75rishi.github.io/Empty3/')">
+        <h4>work</h4>
+      </div>
+      <div class="box" onclick="clickEffect(this,'#facc15', 'https://75rishi.github.io/Empty4/')">
+        <h4>why you</h4>
+      </div>
+      <div class="box" onclick="clickEffect(this,'#fb7185', 'https://75rishi.github.io/Empty6/')">
+        <h4>time waste 25-12-25</h4>
+      </div>
+      <div class="box" onclick="clickEffect(this,'#fbbf24', 'https://75raj.github.io/workk/')">
+        <h4> 23-12-2025</h4>
+      </div>
+      <div class="box" onclick="clickEffect(this,'#22d3ee', 'https://75rishi.github.io/Empty8/')">
+        <h4>about</h4>
+      </div>
+      <div class="box" onclick="clickEffect(this,'#22d3ee', 'https://75rishi.github.io/Empty9/')">
+        <h4>31-dec</h4>
+      </div>
     </div>
-
-    <!-- Modal for Language Choice -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <h2 style="color:#00ffff; text-shadow:0 0 15px #00ffff;">Choose Language</h2>
-            <button class="choice-btn" onclick="playHindi()">🇮🇳 हिंदी में सुनें</button>
-            <button class="choice-btn" onclick="playEnglish()">🇬🇧 English में सुनें</button>
-
-            <div id="hindi-player" class="player-box">
-                <h3 style="color:#ff00ff;">Hindi Audio</h3>
-                <audio controls controlsList="nodownload">
-                    <source src="hindi.mp3" type="audio/mpeg">
-                    Browser audio support nahi karta.
-                </audio>
-            </div>
-
-            <div id="english-player" class="player-box">
-                <h3 style="color:#ff00ff;">English Audio</h3>
-                <audio controls controlsList="nodownload">
-                    <source src="english.mp3" type="audio/mpeg">
-                    Browser audio support nahi karta.
-                </audio>
-            </div>
-
-            <button class="close-btn" onclick="closeModal()">Close</button>
-        </div>
-    </div>
-
-    <script>
-        function openModal() {
-            document.getElementById('modal').style.display = 'flex';
-            document.getElementById('hindi-player').style.display = 'none';
-            document.getElementById('english-player').style.display = 'none';
-        }
-
-        function playHindi() {
-            document.getElementById('hindi-player').style.display = 'block';
-            document.getElementById('english-player').style.display = 'none';
-        }
-
-        function playEnglish() {
-            document.getElementById('english-player').style.display = 'block';
-            document.getElementById('hindi-player').style.display = 'none';
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-            // Pause both audios when closing
-            document.querySelectorAll('audio').forEach(a => a.pause());
-        }
-    </script>
+  </div>
+  <script>
+    function clickEffect(el, color, url){
+      const original = el.style.background;
+      el.style.background = color;
+      setTimeout(() => {
+        window.open(url, '_blank');
+        el.style.background = original;
+      }, 800);
+    }
+  </script>
 </body>
 </html>
+
